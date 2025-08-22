@@ -131,6 +131,11 @@ public final class AppleMusicClient: AMClientProtocol, Sendable {
         StorefrontsResource(client: self)
     }
     
+    /// Provides access to song-related API endpoints.
+    public var songs: SongsResource {
+        SongsResource(client: self)
+    }
+    
     // MARK: - Lifecycle
     
     deinit {

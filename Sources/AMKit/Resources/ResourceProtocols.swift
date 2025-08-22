@@ -91,6 +91,9 @@ public protocol CatalogResource: AMResource {
     /// The type of response returned by catalog requests.
     associatedtype CatalogResponse: Codable & Sendable
     
+    /// The type of include options for this resource.
+    associatedtype IncludeType: RawRepresentable & Sendable where IncludeType.RawValue == String
+    
     /// Fetches a single catalog item by its identifier.
     /// - Parameters:
     ///   - id: The unique identifier for the catalog item
@@ -102,7 +105,7 @@ public protocol CatalogResource: AMResource {
     func fetch(
         id: String,
         storefront: AppleMusicStorefront,
-        include: [ArtistInclude]?,
+        include: [IncludeType]?,
         localization: AppleMusicLocalization?
     ) async throws -> CatalogResponse
 }

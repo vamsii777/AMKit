@@ -53,6 +53,7 @@ public struct ArtistsResource: AMResource {
 public struct ArtistsCatalogResource: CatalogResource {
     public typealias CatalogItem = Artist
     public typealias CatalogResponse = ArtistResponse
+    public typealias IncludeType = ArtistInclude
     
     /// The underlying client used to make API requests.
     public let client: any AMClientProtocol
@@ -76,7 +77,7 @@ public struct ArtistsCatalogResource: CatalogResource {
     public func fetch(
         id: String,
         storefront: AppleMusicStorefront,
-        include: [ArtistInclude]?,
+        include: [IncludeType]?,
         localization: AppleMusicLocalization?
     ) async throws -> ArtistResponse {
         guard !id.isEmpty else {
